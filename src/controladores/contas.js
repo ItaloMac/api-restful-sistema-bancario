@@ -14,7 +14,25 @@ function listarContasBancarias (req, res) {
 }
 
 function criarContaBancaria(req, res) {
+    const dadosDaNovaConta = req.body.usuario
     
+    const novaConta = {
+        numero: new Date().getTime().toString(),
+        saldo: 0,
+        usuario: {
+            nome: dadosDaNovaConta.nome,
+            cpf: dadosDaNovaConta.cpf,
+            data_nascimento:dadosDaNovaConta.data_nascimento,
+            telefone: dadosDaNovaConta.telefone,
+            email: dadosDaNovaConta.email,
+            senha:dadosDaNovaConta.senha
+        }
+    }
+    
+    contas.push(novaConta)
+    console.log(novaConta,typeof novaConta.numero)
+
+    return res.status(201).json(contas)
 }
 
 function atualizarUsuario (req, res) {
