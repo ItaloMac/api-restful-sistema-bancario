@@ -18,8 +18,16 @@ function verificaAtualizacaoUsuario (req,res, next) {
     if ( contaUsuario.numero != numeroConta) {
         return res.status(400).json({mensagem: "O numero da conta informado é invalido!"})
     }
+
+    //VALIDAÇÃO DE CPF OU EMAIL UNICO
+    for (let i = 0; i < contas.length; i++) {
+        if (dadosDaNovaConta.cpf === contas[i].usuario.cpf || dadosDaNovaConta.email === contas[i].usuario.email) {
+            return res.status(400
+                ).json({mensagem: "O CPF informado já está cadastrado em uma conta."})
+        }
+    }
     
    next();
 }
-
+1
 module.exports = {verificaAtualizacaoUsuario}
