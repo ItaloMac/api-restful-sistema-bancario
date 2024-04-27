@@ -11,4 +11,15 @@ function verificaAtualizacaoUsuario (req,res, next) {
         
         return res.status(400).json({mensagem: "Todos os campos são obrigatórios!"})
     }
+
+    //VALIDAÇÃO DE NUMERO DA CONTA
+    const contaUsuario = contas.find(conta => conta.numero === numeroConta)
+    console.log(contaUsuario.numero)
+    if ( contaUsuario.numero != numeroConta) {
+        return res.status(400).json({mensagem: "O numero da conta informado é invalido!"})
+    }
+    
+   next();
 }
+
+module.exports = {verificaAtualizacaoUsuario}
