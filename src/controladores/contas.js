@@ -40,6 +40,10 @@ function atualizarUsuario (req, res) {
     const { nome, cpf, data_nascimento,telefone, email, senha} = req.body.usuario;
 
     let contaAtualizada = contas.find(conta => conta.numero === numeroConta)
+
+    if (!contaAtualizada) {
+        return res.status(200).json("Numero da conta informado é invalido!")
+    }
    
 }
 
