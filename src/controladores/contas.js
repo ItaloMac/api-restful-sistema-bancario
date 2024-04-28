@@ -44,7 +44,15 @@ function atualizarUsuario (req, res) {
     if (!contaAtualizada) {
         return res.status(200).json("Numero da conta informado é invalido!")
     }
-   
+
+      contaAtualizada.usuario.nome = nome
+      contaAtualizada.usuario.cpf = cpf
+      contaAtualizada.usuario.data_nascimento = data_nascimento
+      contaAtualizada.usuario.telefone = telefone
+      contaAtualizada.usuario.email = email
+      contaAtualizada.usuario.senha = senha
+
+    return res.status(201).send(contaAtualizada)
 }
 
 function deletarConta (req, res) {
