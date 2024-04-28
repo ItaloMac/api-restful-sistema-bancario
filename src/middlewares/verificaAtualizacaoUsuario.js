@@ -19,7 +19,7 @@ function verificaAtualizacaoUsuario (req,res, next) {
         return res.status(400).json({mensagem: "O numero da conta informado é invalido!"})
     }
 
-    //VALIDAÇÃO DE CPF OU EMAIL UNICO
+    //VALIDAÇÃO DE CPF E" EMAIL UNICO
     for (let i = 0; i < contas.length; i++) {
         if (dadosDaNovaConta.cpf === contas[i].usuario.cpf || dadosDaNovaConta.email === contas[i].usuario.email) {
             return res.status(400

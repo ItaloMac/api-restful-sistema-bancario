@@ -36,6 +36,8 @@ function criarContaBancaria(req, res) {
 }
 
 function atualizarUsuario (req, res) {
+    const { numeroConta } = req.params;
+    const { nome, cpf, data_nascimento,telefone, email, senha} = req.body.usuario;
    
 }
 
