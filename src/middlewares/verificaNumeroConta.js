@@ -5,8 +5,8 @@ function verificaNumeroConta (req,res, next) {
 
     //VALIDAÇÃO DE NUMERO DA CONTA
     const contaUsuario = contas.find(conta => conta.numero === numeroConta)
-    if ( contaUsuario.numero !== numeroConta) {
-        return res.status(404).json({mensagem: "O numero da conta informada é invalido!"})
+    if ( contaUsuario == undefined) {
+        return res.status(404).json({mensagem: "O numero da conta informado é invalido!"})
     }
 
     //VERIFICA SE O SALDO DA CONTA É 0
