@@ -52,6 +52,14 @@ function atualizarUsuario (req, res) {
 }
 
 function deletarConta (req, res) {
+    const {numeroConta} = req.params
+   
+   const contaBanco = contas.find(conta => conta.numero === numeroConta)
+
+   const indexContaBanco = contas.indexOf(contaBanco)
+   contas.splice(indexContaBanco, 1);
+
+   return res.status(204).send()
    
 }
 
