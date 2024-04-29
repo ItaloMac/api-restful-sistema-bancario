@@ -1,5 +1,3 @@
-const fs = require('fs/promises');
-const path = require('path');
 const { contas } = require('../bancodedados')
 
 function listarContasBancarias (req, res) {
@@ -62,9 +60,6 @@ function deletarConta (req, res) {
    return res.status(204).send()
    
 }
-
-
-
 
 module.exports = {
     listarContasBancarias,
