@@ -39,20 +39,16 @@ function atualizarUsuario (req, res) {
     const { numeroConta } = req.params;
     const { nome, cpf, data_nascimento,telefone, email, senha} = req.body.usuario;
 
-    let contaAtualizada = contas.find(conta => conta.numero === numeroConta)
+    let contaBanco = contas.find(conta => conta.numero === numeroConta)       
+      
+      contaBanco.usuario.nome = nome
+      contaBanco.usuario.cpf = cpf
+      contaBanco.usuario.data_nascimento = data_nascimento
+      contaBanco.usuario.telefone = telefone
+      contaBanco.usuario.email = email
+      contaBanco.usuario.senha = senha
 
-    if (!contaAtualizada) {
-        return res.status(200).json("Numero da conta informado é invalido!")
-    }
-
-      contaAtualizada.usuario.nome = nome
-      contaAtualizada.usuario.cpf = cpf
-      contaAtualizada.usuario.data_nascimento = data_nascimento
-      contaAtualizada.usuario.telefone = telefone
-      contaAtualizada.usuario.email = email
-      contaAtualizada.usuario.senha = senha
-
-    return res.status(201).send(contaAtualizada)
+    return res.status(201).send(contaBanco)
 }
 
 function deletarConta (req, res) {
