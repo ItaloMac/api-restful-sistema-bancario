@@ -33,7 +33,12 @@ function transferir (req, res) {
 }
 
 function saldoDaConta (req, res) {
+    const { numero_conta } = req.query
 
+    const conta = contas.find(conta => conta.numero === numero_conta)
+    const saldo = conta.saldo
+
+    return res.status(200).json(saldo);
 }
 
 function extrato(req, res) {
