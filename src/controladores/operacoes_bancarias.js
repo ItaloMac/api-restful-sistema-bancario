@@ -20,6 +20,15 @@ function sacar (req, res) {
 }
 
 function transferir (req, res) {
+    const {numero_conta_origem, numero_conta_destino, valor } = req.body
+
+    const contaBancoOrigem = contas.find(conta => conta.numero === numero_conta_origem)
+    const contaBancoDestino = contas.find(conta => conta.numero === numero_conta_destino)
+
+    contaBancoOrigem.saldo = contaBancoOrigem.saldo - valor
+    contaBancoDestino.saldo = contaBancoDestino.saldo + valor
+
+    return res.status(204).send()
 
 }
 
