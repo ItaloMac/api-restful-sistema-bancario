@@ -10,7 +10,13 @@ function depositar (req, res) {
 }
 
 function sacar (req, res) {
+    const { numero_conta, valor } = req.body
 
+    let contaBanco = contas.find(conta => conta.numero === numero_conta)
+
+    contaBanco.saldo = contaBanco.saldo - valor
+    
+    return res.status(204).send()
 }
 
 function transferir (req, res) {
