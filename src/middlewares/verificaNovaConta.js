@@ -6,21 +6,16 @@ function verificaNovaConta (req,res, next) {
     //VALIDAÇÃO DE PREENCHIMENTO OBRIGATÓRIO
     if (!dadosDaNovaConta.nome || !dadosDaNovaConta.cpf || !dadosDaNovaConta.data_nascimento || !dadosDaNovaConta.telefone || !dadosDaNovaConta.email || !dadosDaNovaConta.senha) {
         
-        return res.status(400).json({mensagem: "Todos os campos são obrigatórios!"})
+        return res.status(404).json({mensagem: "Todos os campos são obrigatórios!"})
     }
 
     //VALIDAÇÃO DE CPF OU EMAIL UNICO
     for (let i = 0; i < contas.length; i++) {
         if (dadosDaNovaConta.cpf === contas[i].usuario.cpf || dadosDaNovaConta.email === contas[i].usuario.email) {
-            return res.status(400
-                ).json({mensagem: "O CPF informado já está cadastrado em uma conta."})
+            return res.status(404).json({mensagem: "Já existe uma conta com CPF ou Email informado."})
         }
     }
-
     next();
 };
-
-    
-   
 
 module.exports = {verificaNovaConta}

@@ -1,4 +1,4 @@
-const { contas } = require('../bancodedados')
+const { contas, depositos, saques, transferencias } = require('../bancodedados')
 
 function depositar (req, res) {
     const { numero_conta, valor } = req.body
@@ -6,6 +6,15 @@ function depositar (req, res) {
     let contaBanco = contas.find(conta => conta.numero === numero_conta)
 
     contaBanco.saldo = contaBanco.saldo + valor
+
+    const registroDeposito = {
+        "data": new Date().toString(),
+        "numero_conta": numero_conta,
+        "valor": valor
+    }
+
+    depositos.push(registroDeposito)
+    
     return res.status(204).send()
 }
 
@@ -15,7 +24,15 @@ function sacar (req, res) {
     let contaBanco = contas.find(conta => conta.numero === numero_conta)
 
     contaBanco.saldo = contaBanco.saldo - valor
-    
+
+    const registroSaque = {
+        "data": new Date().toString(),
+        "numero_conta": numero_conta,
+        "valor": valor
+    }
+
+    saques.push(registroSaque)
+
     return res.status(204).send()
 }
 
@@ -27,6 +44,23 @@ function transferir (req, res) {
 
     contaBancoOrigem.saldo = contaBancoOrigem.saldo - valor
     contaBancoDestino.saldo = contaBancoDestino.saldo + valor
+
+    const transferenciasEnviadas = {
+        "data": new Date().toString(),
+        "numero_conta_origem": numero_conta_origem,
+        "numero_conta_destino": numero_conta_destino,
+        "valor": valor
+    }
+
+    const transferenciasRecebidas = {
+        "data": new Date().toString(),
+        "numero_conta_origem": numero_conta_origem,
+        "numero_conta_destino": numero_conta_destino,
+        "valor": valor
+    }
+
+    transferencias.push(transferenciasEnviadas)
+    transferencias.push(transferenciasRecebidas)
 
     return res.status(204).send()
 
@@ -42,6 +76,21 @@ function saldoDaConta (req, res) {
 }
 
 function extrato(req, res) {
+    const numero_conta = req.query.numero_conta
+
+    const depositosDaConta = depositos.filter(deposito => deposito.numero_conta === numero_conta)
+    const saquesDaConta = saques.filter(saque => saque.numero_conta === numero_conta)
+    const transferenciasEnviadasDaConta = transferencias.filter(transferencia => transferencia.numero_conta_origem === numero_conta)
+    const transferenciasRecebidasDaConta = transferencias.filter(transferencia => transferencia.numero_conta_destino === numero_conta)
+
+    const extrato = {
+        depositos: depositosDaConta,
+        saques: saquesDaConta,
+        transferenciasEnviadas: transferenciasEnviadasDaConta,
+        transferenciasRecebidas: transferenciasRecebidasDaConta
+    }
+
+    return res.status(200).json(extrato);
 
 }
 

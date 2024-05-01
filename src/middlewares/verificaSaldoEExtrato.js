@@ -8,8 +8,6 @@ function verificaSaldoEExtrato(req,res, next) {
         return res.json({mensagem: "O número da conta, valor e senha são obrigatórios!"})
     }
 
-    console.log(numero_conta, senha)
-
     const conta = contas.find(conta => conta.numero === numero_conta)
     if (conta == undefined) {
         return res.json({mensagem: "Conta bancária não encontrada!"})
@@ -18,7 +16,6 @@ function verificaSaldoEExtrato(req,res, next) {
 
     const senhaConta = conta.usuario.senha
 
-    console.log(senhaConta)
 
     if (senha != senhaConta) {
         return res.json({mensagem: "A senha informada não corresponde a senha cadastrada na conta!"})
@@ -27,4 +24,4 @@ function verificaSaldoEExtrato(req,res, next) {
     next()
 }
 
-module.exports = { verificaSaldoEExtrato }
+module.exports = {verificaSaldoEExtrato}

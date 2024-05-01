@@ -8,6 +8,7 @@ function verificaSenhaBanco (req,res, next) {
      }
 }
 
+
 module.exports = {
     verificaSenhaBanco
 }
