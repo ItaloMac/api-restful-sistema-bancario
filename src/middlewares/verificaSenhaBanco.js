@@ -1,5 +1,5 @@
 function verificaSenhaBanco (req,res, next) {
-    const { senha_banco } = req.params
+    const { senha_banco } = req.query
     if (senha_banco === "Cubos123Bank") {
         next()
     }

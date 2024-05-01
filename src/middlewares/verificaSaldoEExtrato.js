@@ -1,6 +1,6 @@
 const { contas } = require("../bancodedados");
 
-function verificaSaldo(req,res, next) {
+function verificaSaldoEExtrato(req,res, next) {
     const numero_conta = req.query.numero_conta
     const senha = req.query.senha
 
@@ -26,3 +26,5 @@ function verificaSaldo(req,res, next) {
 
     next()
 }
+
+module.exports = { verificaSaldoEExtrato }
