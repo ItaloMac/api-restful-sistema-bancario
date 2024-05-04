@@ -45,3 +45,6 @@ npm (Node Package Manager)
 
 ## Contribuição
 Contribuições são bem-vindas! Se você encontrar um problema ou tiver uma ideia para melhorar o aplicativo, sinta-se à vontade para abrir um pull request ou discutir suas ideias na seção de issues do GitHub.
+
+## Acesse as Screensshot do projeto
+https://postimg.cc/gallery/hJKhGBF
